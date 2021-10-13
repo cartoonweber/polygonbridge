@@ -1,0 +1,141 @@
+.bridge {
+    padding-top : 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    color: rgb(30, 32, 38);
+    background: white;
+    border-radius: 50px;
+    width: 85%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.title{
+    font-size: 0.75em;
+    color: rgb(118, 128, 143);
+    text-align: center;
+}
+.bridge>hr{
+    border : 3px solid #E6E8EA;
+    width : 6%;
+    border-radius : 30px;
+}
+.asset.title{
+    font-size: 0.75em;
+   
+    margin-bottom: 0.333333em;
+}
+.assetlist{
+    display : flex;
+    justify-content: space-between;
+    width : "100%";
+    background: rgb(245, 245, 245);
+    border-radius: 0.571429em;
+    cursor: pointer;
+    padding : 10px 20px;
+    align-items: center;
+    margin-top: 5px; 
+}
+.assets{
+    display: flex;
+    align-items: center; 
+}
+.assets>img{
+    width : 15px;
+    height : 15px;
+    padding-right:  10px;
+}
+.send{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75em;
+}
+.main{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    height: 55%;
+    font-size: 16px!important;
+}
+.arrow{
+    font-size : 20px;
+    background: rgb(245, 245, 245);
+    height : fit-content;
+    padding :10px 13px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.arrowdown{
+    background: rgb(245, 245, 245);
+    padding :5px 7px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+.paper{
+    margin-top: 5px;
+    padding : 20px 30px;
+    height : 100px;
+}
+.sendetail{
+    font-size: 0.75em;
+    color: rgb(118, 128, 143);
+    margin-top: 1.33333em;
+    line-height: 2em;
+}
+.amountinput{
+    font-size: 40px !important;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 10px!important;
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+}
+.receive>span{
+    display: inline-block;
+    text-align: center;
+    border-radius: 1em;
+    padding: 0.333333em 0.666667em;
+    background: rgba(240, 185, 11, 0.1);
+    color: rgb(208, 152, 11);
+}
+.receive{
+    margin-top: 10px;
+}
+.amount{
+    margin-top: 20px;
+    font-size: 0.75em;
+}
+.receive> img{
+    width : 10px;
+    height: 10px;
+}
+.connect{
+    border : none;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    width : 100%;
+    height : 2.85714em;
+    border-radius: 0.571429em;
+    background: rgb(240, 185, 11);
+    margin-top : 30px;
+    margin-bottom: 30px;
+}
+
+@media screen and (max-width: 900px) {
+    .main {
+        font-size: 12px!important;
+    }
+    .paper{
+        padding : 10px
+    }
+    .bridge{
+        padding-left: 20px!important;
+        padding-right: 20px!important;
+    }
+  }
