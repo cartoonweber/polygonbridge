@@ -6,7 +6,7 @@ import { HiArrowRight } from 'react-icons/hi'
 
 export default function Landing() {
     return (
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Box sx={{ display: "flex", justifyContent: "center" }} className = "bridgebody">
             <Box className="bridge">
                 <Box className="title">
                     Daily quota ? per address (? / ?)
