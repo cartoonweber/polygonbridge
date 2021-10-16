@@ -59,7 +59,12 @@ export default function Landing() {
                         if ((event?.key === '-' || event?.key === '+')) {
                             event.preventDefault();
                         }
-                    }} />
+                    }}
+                        onChange={(event) =>
+                            event.target.value < 0
+                                ? (event.target.value = 0)
+                                : event.target.value
+                        } />
                     <Box className="receive">You will receive ≈ 0 <img src="mndcc.png" /> MNDCC <span>&nbsp;BEP20</span></Box>
                 </Box>
                 <button className="connect">Connect Wallet</button>
