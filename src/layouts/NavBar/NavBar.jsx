@@ -33,9 +33,8 @@ export default function NavBar({ account, active }) {
                 <Box className="logobody">
                     <img src="chain-icon.svg" />
                     <Box className="logotitle">
-                        BINANCE <span style = {{fontWeight : "500"}}>CHAIN</span>
+                        MONDO <span style = {{fontWeight : "500"}}>BRIDGE</span>
                     </Box>
-                    <Box className="binancelink">Binance Bridge</Box>
                 </Box>
                 {active ?
                     (

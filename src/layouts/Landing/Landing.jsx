@@ -16,8 +16,8 @@ export default function Landing() {
                     <Box style={{ fontSize: "0.75em" }}>Asset</Box>
                     <Box className="assetlist">
                         <Box className="assets">
-                            <img src="usdt.png" />
-                            <Box>USDT</Box>
+                            <img src="mndcc.png" />
+                            <Box>MNDCC</Box>
                         </Box>
                         <FaChevronRight />
                     </Box>
@@ -51,7 +51,7 @@ export default function Landing() {
                 <Box className="amount">
                     <Box>Amount</Box>
                     <OutlinedInput className="amountinput" type="number" />
-                    <Box className="receive">You will receive ≈ 0 <img src="usdt.png" /> USDT <span>&nbsp;BEP20</span></Box>
+                    <Box className="receive">You will receive ≈ 0 <img src="mndcc.png" /> MNDCC <span>&nbsp;BEP20</span></Box>
                 </Box>
                 <button className="connect">Connect Wallet</button>
             </Box>
