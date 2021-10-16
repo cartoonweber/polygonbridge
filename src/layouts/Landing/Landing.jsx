@@ -55,7 +55,11 @@ export default function Landing() {
                 <Box className="sendetail">If you have not add Binance Smart Chain network in your MetaMask yet, please click <button style={{ color: "black", backgroundColor: "rgb(240, 185, 11)", padding: "6px", borderRadius: "6px", border: "none", cursor: "pointer" }}>Add network</button> and continue</Box>
                 <Box className="amount">
                     <Box>Amount</Box>
-                    <OutlinedInput className="amountinput" type="number" />
+                    <OutlinedInput className="amountinput" type="number" onChange={(event) =>
+                        event.target.value < 0
+                            ? (event.target.value = 0)
+                            : event.target.value
+                    } />
                     <Box className="receive">You will receive ≈ 0 <img src="mndcc.png" /> MNDCC <span>&nbsp;BEP20</span></Box>
                 </Box>
                 <button className="connect">Connect Wallet</button>
