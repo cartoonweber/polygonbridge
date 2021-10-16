@@ -23,12 +23,10 @@ export default function Footer() {
                                     <IoEarth style={{ fontSize: "25px", color: "rgb(30, 32, 38)" }} />&nbsp;
                                 </InputAdornment>
                             ),
-                            disableUnderline: true,
                         }}
                         value={10}
                     >
-
-                        <MenuItem value={10}>English</MenuItem>
+                    <MenuItem value={10}>English</MenuItem>
                     </TextField>
                 </Box>
             </Box>

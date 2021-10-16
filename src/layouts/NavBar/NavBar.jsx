@@ -33,7 +33,7 @@ export default function NavBar({ account, active }) {
                 <Box className="logobody">
                     <img src="chain-icon.svg" />
                     <Box className="logotitle">
-                        MONDO <span style = {{fontWeight : "500"}}>BRIDGE</span>
+                    MONDO <span style = {{fontWeight : "500"}}>BRIDGE</span>
                     </Box>
                 </Box>
                 {active ?

@@ -45,8 +45,8 @@
     align-items: center; 
 }
 .assets>img{
-    width : 22px;
-    height : 22px;
+    width : 20px;
+    height : 20px;
     padding-right:  10px;
 }
 .send{
@@ -56,13 +56,6 @@
     align-items: center;
     font-size: 0.75em;
 }
-.main{
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    height: 55%;
-    font-size: 16px!important;
-}
 .arrow{
     font-size : 20px;
     background: rgb(245, 245, 245);
@@ -71,17 +64,7 @@
     border-radius: 10px;
     cursor: pointer;
 }
-.arrowdown{
-    background: rgb(245, 245, 245);
-    padding :5px 7px;
-    border-radius: 7px;
-    cursor: pointer;
-}
-.paper{
-    margin-top: 5px;
-    padding : 20px 30px;
-    height : 100px;
-}
+
 .sendetail{
     font-size: 0.75em;
     color: rgb(118, 128, 143);
@@ -115,8 +98,8 @@
     font-size: 0.75em;
 }
 .receive> img{
-    width : 10px;
-    height: 10px;
+    width : 15px;
+    height: 15px;
 }
 .connect{
     border : none;
@@ -133,12 +116,6 @@
 }
 
 @media screen and (max-width: 900px) {
-    .main {
-        font-size: 12px!important;
-    }
-    .paper{
-        padding : 10px
-    }
     .bridge{
         padding-left: 20px!important;
         padding-right: 20px!important;
