@@ -5,10 +5,150 @@ import { FaChevronRight, FaChevronDown, FaArrowRight } from 'react-icons/fa';
 import { HiArrowRight } from 'react-icons/hi';
 import { BridgePaper } from '../../components/BridgePaper';
 
-export default function Landing() {
+import BigNumber from 'bignumber.js';
+import axios from 'axios';
+
+import BridgeEth from '../../../build/contracts/BridgeEth.json';
+import BridgeBsc from '../../../build/contracts/BridgeBsc.json';
+import TokenEth from '../../../build/contracts/TokenEth.json';
+import TokenBsc from '../../../build/contracts/TokenBsc.json';
+
+const decimalNumber = new BigNumber("1000000000000000000");
+const bscNetworkId = 97;
+const ethNetworkId = 3;
+const feeAmount = 2;
+
+const apiEndpoint = 'http://10.10.13.235:3000';
+
+export default function Landing({ account }) {
 
     const [from, setFrom] = useState(0);
     const [to, setTo] = useState(1);
+
+    const [isBSC, setIsBSC] = useState(true);
+    const [balance, setBalance] = useState(0);
+    const [amountValue, setAmountValue] = useState(0)
+    const [addressValue, setAddressValue] = useState('0x...')
+    const [processing, setProcessing] = useState(false);
+
+    const onBridgeEth = async () => {
+        const chainId = await window.web3.eth.getChainId();
+
+        if (chainId !== 3) {
+            alert("Wrong Network");
+            return;
+        }
+
+        setProcessing(true);
+        const amount = new BigNumber(amountValue).multipliedBy(decimalNumber).toJSON();
+        const amountToApprove = (new BigNumber(amountValue).plus(feeAmount)).multipliedBy(decimalNumber).toJSON();
+
+        // const nonce = await window.web3.eth.getTransactionCount(adminAddress);
+        const nonce = 1;
+
+        const message = window.web3.utils.soliditySha3(
+            { t: 'address', v: account },
+            { t: 'address', v: addressValue },
+            { t: 'uint256', v: amount },
+            { t: 'uint256', v: nonce },
+        ).toString('hex');
+
+        const signature = await window.web3.eth.personal.sign(
+            message,
+            account
+        );
+
+        const bridgeEthAddress = BridgeEth.networks[ethNetworkId].address;
+        const tokenEthInstance = await new window.web3.eth.Contract(TokenEth.abi, TokenEth.networks[ethNetworkId].address);
+        const bridgeEthInstance = await new window.web3.eth.Contract(BridgeEth.abi, bridgeEthAddress);
+        await tokenEthInstance.methods.approve(bridgeEthAddress, amountToApprove).send({ from: account });
+        await bridgeEthInstance.methods.burn(account, amount, nonce, signature).send({ from: account });
+
+        await axios.post(`${apiEndpoint}/ethbridge`, {
+            from: account,
+            to: addressValue,
+            amount,
+            nonce,
+            signature
+        }, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        setProcessing(false);
+        alert("Transaction has been processed successfully");
+    }
+
+    const onBridgeBsc = async () => {
+
+        const chainId = await window.web3.eth.getChainId();
+
+        if (chainId !== 97) {
+            alert("Wrong Network");
+            return;
+        }
+
+        setProcessing(true);
+        const amount = new BigNumber(amountValue).multipliedBy(decimalNumber).toJSON();
+        const amountToApprove = (new BigNumber(amountValue).plus(feeAmount)).multipliedBy(decimalNumber).toJSON();
+
+        // const nonce = await window.web3.eth.getTransactionCount(adminAddress);
+        const nonce = 1;
+
+        const message = window.web3.utils.soliditySha3(
+            { t: 'address', v: account },
+            { t: 'address', v: addressValue },
+            { t: 'uint256', v: amount },
+            { t: 'uint256', v: nonce },
+        ).toString('hex');
+
+        const signature = await window.web3.eth.personal.sign(
+            message,
+            account
+        );
+
+        const bridgeBscAddress = BridgeBsc.networks[bscNetworkId].address;
+        const tokenBscInstance = await new window.web3.eth.Contract(TokenBsc.abi, TokenBsc.networks[bscNetworkId].address);
+        const bridgeBscInstance = await new window.web3.eth.Contract(BridgeBsc.abi, bridgeBscAddress);
+        await tokenBscInstance.methods.approve(bridgeBscAddress, amountToApprove).send({ from: account });
+        await bridgeBscInstance.methods.burn(account, amount, nonce, signature).send({ from: account });
+
+        await axios.post(`${apiEndpoint}/bscbridge`, {
+            from: account,
+            to: addressValue,
+            amount,
+            nonce,
+            signature
+        }, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        setProcessing(false);
+        alert("Transaction has been processed successfully");
+    }
+
+    const fetchBalance = async () => {
+        let value;
+        if (isBSC) {
+            const tokenBscInstance = await new window.web3.eth.Contract(TokenBsc.abi, TokenBsc.networks[bscNetworkId].address);
+            value = await tokenBscInstance.methods.balanceOf(account).call();
+            console.log(new BigNumber(value).dividedBy(decimalNumber).decimalPlaces(2).toJSON())
+        } else {
+            const tokenEthInstance = await new window.web3.eth.Contract(TokenEth.abi, TokenEth.networks[ethNetworkId].address);
+            value = await tokenEthInstance.methods.balanceOf(account).call();
+        }
+        setBalance(new BigNumber(value).dividedBy(decimalNumber).decimalPlaces(2).toJSON());
+    }
+
+    useEffect(() => {
+        if (account) {
+            fetchBalance();
+            setAddressValue(account ? account : "0x...")
+        }
+    }, [account, isBSC]);
 
     const handleFromClose = (event) => {
         const t = event.currentTarget.dataset.myValue / 1;
@@ -60,11 +200,12 @@ export default function Landing() {
                             event.preventDefault();
                         }
                     }}
-                        onChange={(event) =>
+                        onChange={(event) => {
                             event.target.value < 0
                                 ? (event.target.value = 0)
                                 : event.target.value
-                        } />
+                            setAmountValue(event.target.value);
+                        }} />
                     <Box className="receive">You will receive ≈ 0 <img src="mndcc.png" /> MNDCC <span>&nbsp;BEP20</span></Box>
                 </Box>
                 <button className="connect">Connect Wallet</button>

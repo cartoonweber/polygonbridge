@@ -13,7 +13,9 @@ function App() {
 			<NavBar account={account} active={active} />
 			<Router>
 				<Switch>
-					<Route exact path="/" component={Landing} />
+					<Route exact path="/" >
+						<Landing account = {account}/>
+					</Route>
 				</Switch>
 			</Router>
 			<Footer />
