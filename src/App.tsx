@@ -15,19 +15,19 @@ function App() {
   const [account, setAccount] = useState();
 
   return (
-    <>
+    <div style = {{display : "flex", flexDirection : "column", alignItems : "center", justifyContent : "center"}}>
       <NavBar account={account} />
       <Router>
         <Switch>
           <Route exact path="/">
             <Landing isOpen={isOpen} setOpen={setOpen} account={account} setAccount={setAccount} />
-            <Background />
+            <Background/>
             <ConnectModal login={login} open={isOpen} setOpen={setOpen} account={account} setAccount={setAccount} />
           </Route>
         </Switch>
       </Router>
       <Footer />
-    </>
+    </div>
   );
 }
 

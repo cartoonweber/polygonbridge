@@ -41,12 +41,6 @@ const GlobalStyle = createGlobalStyle`
     * {
         font-family: SFProDisplayRegular;
     }
-    #root {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
 `;
 
 export default GlobalStyle;
