@@ -4,7 +4,7 @@ import { Box, Paper, Menu, MenuItem } from '@material-ui/core';
 import { FaChevronDown } from 'react-icons/fa'
 
 export default function BridgePaper({children, index, handleClose}) {
-    const networks = ["Ethereum Network", "Binance Chain Network"];
+    const networks = ["Ethereum Network", "Polygon Network"];
     const networkimags = ["eth-icon.svg", "chain-icon.svg"];
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);

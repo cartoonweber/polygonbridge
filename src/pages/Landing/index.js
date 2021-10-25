@@ -180,10 +180,6 @@ const Landing = ({ isOpen, setOpen, account, setAccount }) => {
     return (
         <Box sx={{ display: "flex", justifyContent: "center" }} className="bridgebody">
             <Box className="bridge">
-                <Box className="title">
-                    Daily quota ? per address (? / ?)
-                </Box>
-                <hr />
                 <Box>
                     <Box style={{ fontSize: "0.75em" }}>Asset</Box>
                     <Box className="assetlist">
