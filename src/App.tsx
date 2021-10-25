@@ -21,7 +21,6 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Landing isOpen={isOpen} setOpen={setOpen} account={account} setAccount={setAccount} />
-            <Background/>
             <ConnectModal login={login} open={isOpen} setOpen={setOpen} account={account} setAccount={setAccount} />
           </Route>
         </Switch>
